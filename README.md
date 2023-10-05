@@ -1,8 +1,8 @@
 # Requisitos do Programa:
 
-1. ## 
+1. ## Estrutura de Dados: 
 
-Estrutura de Dados: Implemente a estrutura de dados da Lista Circular Duplamente Encadeada. Cada nó da lista deve conter um campo de dados (inteiro) e dois ponteiros, um para o próximo nó e outro para o nó anterior.
+Implemente a estrutura de dados da Lista Circular Duplamente Encadeada. Cada nó da lista deve conter um campo de dados (inteiro) e dois ponteiros, um para o próximo nó e outro para o nó anterior.
 
 2. ## Operações Básicas: 
 
