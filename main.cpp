@@ -1,19 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// DefiniÁ„o da estrutura de nÛ da lista circular duplamente encadeada
+// Defini√ß√£o da estrutura de n√≥ da lista circular duplamente encadeada
 typedef struct No {
     int dado;
     struct No* proximo;
     struct No* anterior;
 } No;
 
-// FunÁ„o para inicializar uma lista vazia
-No* inicializarLista(void) {
+// Fun√ß√£o para inicializar uma lista vazia
+No* inicializarLista() {
     return NULL;
 }
 
-// FunÁ„o para inserir um elemento no inÌcio da lista
+// Fun√ß√£o para inserir um elemento no in√≠cio da lista
 No* inserirNoInicio(No* lista, int valor) {
     No* novoNo = (No*)malloc(sizeof(No));
     novoNo->dado = valor;
@@ -31,7 +31,7 @@ No* inserirNoInicio(No* lista, int valor) {
     return novoNo;
 }
 
-// FunÁ„o para inserir um elemento no final da lista
+// Fun√ß√£o para inserir um elemento no final da lista
 No* inserirNoFinal(No* lista, int valor) {
     No* novoNo = (No*)malloc(sizeof(No));
     novoNo->dado = valor;
@@ -49,7 +49,7 @@ No* inserirNoFinal(No* lista, int valor) {
     return lista;
 }
 
-// FunÁ„o para remover um elemento da lista com base em um valor especÌfico
+// Fun√ß√£o para remover um elemento da lista com base em um valor espec√≠fico
 No* removerElemento(No* lista, int valor) {
     if (lista == NULL) {
         return NULL;
@@ -77,7 +77,7 @@ No* removerElemento(No* lista, int valor) {
     return lista;
 }
 
-// FunÁ„o para buscar um elemento na lista
+// Fun√ß√£o para buscar um elemento na lista
 No* buscarElemento(No* lista, int valor) {
     No* atual = lista;
     if (atual == NULL) {
@@ -95,7 +95,7 @@ No* buscarElemento(No* lista, int valor) {
     return NULL;
 }
 
-// FunÁ„o para exibir todos os elementos da lista
+// Fun√ß√£o para exibir todos os elementos da lista
 void imprimirLista(No* lista) {
     No* atual = lista;
     if (atual == NULL) {
@@ -112,13 +112,13 @@ void imprimirLista(No* lista) {
     printf("\n");
 }
 
-int main(void) {
-    No* lista = inicializarLista(void);
+int main() {
+    No* lista = inicializarLista();
     int escolha, valor;
 
     do {
         printf("X------------------------------X\n");
-        printf("| 1 - Inserir no InÌcio         |\n");
+        printf("| 1 - Inserir no In√≠cio         |\n");
         printf("| 2 - Inserir no Final          |\n");
         printf("| 3 - Remover Elemento          |\n");
         printf("| 4 - Buscar Elemento           |\n");
@@ -126,12 +126,12 @@ int main(void) {
         printf("| 6 - Sair                      |\n");
         printf("X------------------------------X\n");
 
-        printf("Digite uma opÁ„o: ");
+        printf("Digite uma op√ß√£o: ");
         scanf("%d", &escolha);
 
         switch (escolha) {
             case 1:
-                printf("Digite o valor para inserir no inÌcio: ");
+                printf("Digite o valor para inserir no in√≠cio: ");
                 scanf("%d", &valor);
                 lista = inserirNoInicio(lista, valor);
                 break;
@@ -152,7 +152,7 @@ int main(void) {
                 if (encontrado != NULL) {
                     printf("Valor encontrado na lista.\n");
                 } else {
-                    printf("Valor n„o encontrado na lista.\n");
+                    printf("Valor n√£o encontrado na lista.\n");
                 }
                 break;
             case 5:
@@ -162,12 +162,12 @@ int main(void) {
                 printf("Encerrando o programa.\n");
                 break;
             default:
-                printf("OpÁ„o inv·lida. Por favor, tente novamente.\n");
+                printf("Op√ß√£o inv√°lida. Por favor, tente novamente.\n");
                 break;
         }
     } while (escolha != 6);
 
-    // Liberar memÛria alocada
+    // Liberar mem√≥ria alocada
     No* atual = lista;
     while (atual != NULL) {
         No* temp = atual;
@@ -177,4 +177,3 @@ int main(void) {
 
     return 0;
 }
-
