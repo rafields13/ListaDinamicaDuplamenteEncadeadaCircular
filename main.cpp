@@ -1,177 +1,177 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Definition of the doubly circular linked list node structure
-typedef struct Node {
-    int data;
-    struct Node* next;
-    struct Node* prev;
-} Node;
+// Definição da estrutura de nó da lista circular duplamente encadeada
+typedef struct No {
+    int dado;
+    struct No* proximo;
+    struct No* anterior;
+} No;
 
-// Function to initialize an empty list
-Node* initializeList() {
+// Função para inicializar uma lista vazia
+No* inicializarLista(void) {
     return NULL;
 }
 
-// Function to insert an element at the beginning of the list
-Node* insertAtBeginning(Node* list, int value) {
-    Node* newNode = (Node*)malloc(sizeof(Node));
-    newNode->data = value;
+// Função para inserir um elemento no início da lista
+No* inserirNoInicio(No* lista, int valor) {
+    No* novoNo = (No*)malloc(sizeof(No));
+    novoNo->dado = valor;
 
-    if (list == NULL) {
-        newNode->next = newNode;
-        newNode->prev = newNode;
+    if (lista == NULL) {
+        novoNo->proximo = novoNo;
+        novoNo->anterior = novoNo;
     } else {
-        newNode->next = list;
-        newNode->prev = list->prev;
-        list->prev->next = newNode;
-        list->prev = newNode;
+        novoNo->proximo = lista;
+        novoNo->anterior = lista->anterior;
+        lista->anterior->proximo = novoNo;
+        lista->anterior = novoNo;
     }
 
-    return newNode;
+    return novoNo;
 }
 
-// Function to insert an element at the end of the list
-Node* insertAtEnd(Node* list, int value) {
-    Node* newNode = (Node*)malloc(sizeof(Node));
-    newNode->data = value;
+// Função para inserir um elemento no final da lista
+No* inserirNoFinal(No* lista, int valor) {
+    No* novoNo = (No*)malloc(sizeof(No));
+    novoNo->dado = valor;
 
-    if (list == NULL) {
-        newNode->next = newNode;
-        newNode->prev = newNode;
+    if (lista == NULL) {
+        novoNo->proximo = novoNo;
+        novoNo->anterior = novoNo;
     } else {
-        newNode->next = list;
-        newNode->prev = list->prev;
-        list->prev->next = newNode;
-        list->prev = newNode;
+        novoNo->proximo = lista;
+        novoNo->anterior = lista->anterior;
+        lista->anterior->proximo = novoNo;
+        lista->anterior = novoNo;
     }
 
-    return list;
+    return lista;
 }
 
-// Function to remove an element from the list based on a specific value
-Node* removeElement(Node* list, int value) {
-    if (list == NULL) {
+// Função para remover um elemento da lista com base em um valor específico
+No* removerElemento(No* lista, int valor) {
+    if (lista == NULL) {
         return NULL;
     }
 
-    Node* current = list;
+    No* atual = lista;
     do {
-        if (current->data == value) {
-            Node* nextNode = current->next;
-            Node* prevNode = current->prev;
-            prevNode->next = nextNode;
-            nextNode->prev = prevNode;
+        if (atual->dado == valor) {
+            No* proximoNo = atual->proximo;
+            No* noAnterior = atual->anterior;
+            noAnterior->proximo = proximoNo;
+            proximoNo->anterior = noAnterior;
 
-            if (current == list) {
-                list = nextNode;
+            if (atual == lista) {
+                lista = proximoNo;
             }
 
-            free(current);
+            free(atual);
             break;
         }
 
-        current = current->next;
-    } while (current != list);
+        atual = atual->proximo;
+    } while (atual != lista);
 
-    return list;
+    return lista;
 }
 
-// Function to search for an element in the list
-Node* searchElement(Node* list, int value) {
-    Node* current = list;
-    if (current == NULL) {
+// Função para buscar um elemento na lista
+No* buscarElemento(No* lista, int valor) {
+    No* atual = lista;
+    if (atual == NULL) {
         return NULL;
     }
 
     do {
-        if (current->data == value) {
-            return current;
+        if (atual->dado == valor) {
+            return atual;
         }
 
-        current = current->next;
-    } while (current != list);
+        atual = atual->proximo;
+    } while (atual != lista);
 
     return NULL;
 }
 
-// Function to display all elements of the list
-void printList(Node* list) {
-    Node* current = list;
-    if (current == NULL) {
-        printf("Empty list.\n");
+// Função para exibir todos os elementos da lista
+void imprimirLista(No* lista) {
+    No* atual = lista;
+    if (atual == NULL) {
+        printf("Lista vazia.\n");
         return;
     }
 
-    printf("Current List: ");
+    printf("Lista Atual: ");
     do {
-        printf("%d ", current->data);
-        current = current->next;
-    } while (current != list);
+        printf("%d ", atual->dado);
+        atual = atual->proximo;
+    } while (atual != lista);
 
     printf("\n");
 }
 
-int main() {
-    Node* list = initializeList();
-    int choice, value;
+int main(void) {
+    No* lista = inicializarLista(void);
+    int escolha, valor;
 
     do {
         printf("X------------------------------X\n");
-        printf("| 1 - Insert at Beginning       |\n");
-        printf("| 2 - Insert at End             |\n");
-        printf("| 3 - Remove Element            |\n");
-        printf("| 4 - Search Element            |\n");
-        printf("| 5 - Display List              |\n");
-        printf("| 6 - Exit                      |\n");
+        printf("| 1 - Inserir no Início         |\n");
+        printf("| 2 - Inserir no Final          |\n");
+        printf("| 3 - Remover Elemento          |\n");
+        printf("| 4 - Buscar Elemento           |\n");
+        printf("| 5 - Exibir Lista              |\n");
+        printf("| 6 - Sair                      |\n");
         printf("X------------------------------X\n");
 
-        printf("Enter an option: ");
-        scanf("%d", &choice);
+        printf("Digite uma opção: ");
+        scanf("%d", &escolha);
 
-        switch (choice) {
+        switch (escolha) {
             case 1:
-                printf("Enter the value to insert at the beginning: ");
-                scanf("%d", &value);
-                list = insertAtBeginning(list, value);
+                printf("Digite o valor para inserir no início: ");
+                scanf("%d", &valor);
+                lista = inserirNoInicio(lista, valor);
                 break;
             case 2:
-                printf("Enter the value to insert at the end: ");
-                scanf("%d", &value);
-                list = insertAtEnd(list, value);
+                printf("Digite o valor para inserir no final: ");
+                scanf("%d", &valor);
+                lista = inserirNoFinal(lista, valor);
                 break;
             case 3:
-                printf("Enter the value to remove: ");
-                scanf("%d", &value);
-                list = removeElement(list, value);
+                printf("Digite o valor para remover: ");
+                scanf("%d", &valor);
+                lista = removerElemento(lista, valor);
                 break;
             case 4:
-                printf("Enter the value to search for: ");
-                scanf("%d", &value);
-                Node* found = searchElement(list, value);
-                if (found != NULL) {
-                    printf("Value found in the list.\n");
+                printf("Digite o valor para buscar: ");
+                scanf("%d", &valor);
+                No* encontrado = buscarElemento(lista, valor);
+                if (encontrado != NULL) {
+                    printf("Valor encontrado na lista.\n");
                 } else {
-                    printf("Value not found in the list.\n");
+                    printf("Valor não encontrado na lista.\n");
                 }
                 break;
             case 5:
-                printList(list);
+                imprimirLista(lista);
                 break;
             case 6:
-                printf("Exiting the program.\n");
+                printf("Encerrando o programa.\n");
                 break;
             default:
-                printf("Invalid option. Please try again.\n");
+                printf("Opção inválida. Por favor, tente novamente.\n");
                 break;
         }
-    } while (choice != 6);
+    } while (escolha != 6);
 
-    // Free allocated memory
-    Node* current = list;
-    while (current != NULL) {
-        Node* temp = current;
-        current = current->next;
+    // Liberar memória alocada
+    No* atual = lista;
+    while (atual != NULL) {
+        No* temp = atual;
+        atual = atual->proximo;
         free(temp);
     }
 
