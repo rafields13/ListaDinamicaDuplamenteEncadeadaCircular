@@ -162,7 +162,7 @@ void esvaziarLista(LISTA *&inicio, LISTA *&fim) {
             fim = nullptr;
         }
 
-        std::cout << "A lista esvaziada com sucesso!";
+        std::cout << "Lista esvaziada com sucesso!";
     }
 }
 
